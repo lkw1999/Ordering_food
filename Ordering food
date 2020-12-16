@@ -1,0 +1,66 @@
+from tkinter import *
+from tkinter import messagebox
+
+가격 = {'새우버거': 3500, '양념치킨': 12000, 
+      '후라이드치킨': 10000, '감자튀김': 2000, 
+      '콜라': 1500, '사이다': 1500, 
+      '피자': 8000, '아이스크림': 1500}
+주문 = []
+sum = 0
+
+def plus(item):
+
+    if item not in 가격:
+        global sum
+
+        print("메뉴가 없습니다.")
+    choose_가격 = 가격.get(item)
+    sum += choose_가격
+    주문.append(item)
+    textarea.insert(INSERT, item+"   ")
+    label['text'] = "총 구매 금액은 " + str(sum) + "원 입니다."
+
+def exit2():
+    msgbox = messagebox.askquestion('확인', '주문을 하지 않으실 건가요?')
+    if msgbox == 'yes':
+        exit()
+    elif msgbox == 'no':
+        pass
+
+win = Tk()
+win.title("패스트푸드 주문")
+
+b1 = Button(win,text='새우버거', command=lambda: plus('새우버거'), width = 7, height=3)
+b1.pack(side = LEFT)
+
+b2 = Button(win,text='양념치킨', command=lambda: plus('양념치킨'), width = 7, height=3)
+b2.pack(side = LEFT)
+
+b3 = Button(win,text='후라이드치킨', command=lambda: plus('후라이드치킨'), width = 10, height=3)
+b3.pack(side = LEFT)
+
+b4 = Button(win,text='감자튀김', command=lambda: plus('감자튀김'), width = 7, height=3)
+b4.pack(side = LEFT)
+
+b5 = Button(win,text='콜라', command=lambda: plus('콜라'), width = 7, height=3)
+b5.pack(side = LEFT)
+
+b6 = Button(win,text='사이다', command=lambda: plus('사이다'), width = 7, height=3)
+b6.pack(side = LEFT)
+
+b7 = Button(win,text='피자', command=lambda: plus('피자'), width = 7, height=3)
+b7.pack(side = LEFT)
+
+b8 = Button(win,text='아이스크림', command=lambda: plus('아이스크림'), width = 8, height=3)
+b8.pack(side = LEFT)
+
+b9 = Button(win,text='나가기', command=exit2 , width = 8, height=2)
+b9.pack()
+
+label = Label(win, text="메뉴를 선택하세요.", width=200, height=3, fg="green")
+label.pack()
+
+textarea=Text(win)
+textarea.pack()
+
+win.mainloop()
